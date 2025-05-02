@@ -1,25 +1,23 @@
 import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 
 export default function UserProfile() {
+    const {userId} = useSearchParams();
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         // Simulate fetching user data
-        const fetchUserData = async () => {
-            try {
-                const response = await fetch('/api/user'); // Replace with your API endpoint
-                const data = await response.json();
-                setUser(data);
-            } catch (error) {
-                console.error('Error fetching user data:', error);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchUserData();
-    }, []);
+        fetch(`http://localhost:5001/api/users/${userId}`)
+        .then((data) => {
+            setUser(data);
+            setLoading(false);
+        })
+        .catch((error) => {
+            console.error('Error fetching user data:', error);
+            setLoading(false);
+        }); 
+    }, [userId]);
 
     if (loading) {
         return <div>Loading...</div>;
