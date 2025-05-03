@@ -1,7 +1,12 @@
 import React from 'react';
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import Home from './pages/Home';
-
+import UserProfile from './pages/UserProfile';
+import Products from './pages/Products'; 
+import ProductDetails from './pages/ProductDetails';
+import Cart from './pages/Cart';
+import Checkout from './pages/Checkout';
+import Login from './pages/Login'; 
 
 
 import './App.css';
@@ -12,15 +17,12 @@ function App() {
         <div className='store'>
           <Routes>
             <Route path='/' element={<Home />} />
-            <Route path='/products' element={<h1>Products</h1>} />
-            <Route path='/cart' element={<h1>Cart</h1>} />
-            <Route path='/checkout' element={<h1>Checkout</h1>} />
-            <Route path='/login' element={<h1>Login</h1>} />
-            <Route path='/register' element={<h1>Register</h1>} />
-            <Route path='/profile' element={<h1>Profile</h1>} />
-            <Route path='/orders' element={<h1>Orders</h1>} />
-            <Route path='/order/:id' element={<h1>Order Details</h1>} />
-            <Route path='/products/:id' element={<h1>Product Details</h1>} />         
+            <Route path='/products' element={<Products />} />
+            <Route path='/cart' element={<Cart />} />
+            <Route path='/checkout' element={<Checkout />} />
+            <Route path='/login' element={<Login />} />
+            <Route path='/profile' element={<UserProfile />} />
+            <Route path='/products/:productId' element={<ProductDetails />} />         
           </Routes>  
         </div>
     </Router>

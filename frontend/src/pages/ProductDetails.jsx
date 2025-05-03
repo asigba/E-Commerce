@@ -1,27 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import axios from 'axios';
 
 export default function ProductDetails(){
+    const API_URL = "http://localhost:5001";
     const { productId } = useParams();
     const [product, setProduct] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        const fetchProduct = async () => {
-            try {
-                const response = await axios.get(`/api/products/${productId}`);
-                setProduct(response.data);
-            } catch (err) {
-                setError('Failed to fetch product details.');
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchProduct();
-    }, [productId]);
+        fetch(`${API_URL}/api/products/${productId}`)
+        .then((response) => response.json())
+        .then((data) => {
+            setProduct(data);
+            setLoading(false);
+        })
+        .catch((error) => {
+            console.error('Error fetching products:', error);
+            setLoading(false);
+        });
+    },[]);
 
     if (loading) return <div>Loading...</div>;
     if (error) return <div>{error}</div>;

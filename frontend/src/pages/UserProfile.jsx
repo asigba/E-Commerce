@@ -2,13 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 export default function UserProfile() {
-    const {userId} = useSearchParams();
+    const API_URL = process.env.REACT_APP_API_URL;
+    const {userId} = useParams();
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         // Simulate fetching user data
-        fetch(`http://localhost:5001/api/users/${userId}`)
+        fetch(`${API_URL}api/users/${userId}`)
         .then((data) => {
             setUser(data);
             setLoading(false);

@@ -3,21 +3,21 @@ version: '3.8'
 services:
   user-service:
     build:
-      context: ./backend
-      dockerfile: user_service/Dockerfile
+      context: ./backend/user_service
+      dockerfile: Dockerfile
     ports:
       - "5002:5002"
   
   product-service:
     build:
-      context: ./backend
-      dockerfile: product_service/Dockerfile
+      context: ./backend/product_service
+      dockerfile: Dockerfile
     ports:
       - "5001:5001"
   order-service:  
     build:
-      context: ./backend
-      dockerfile: order_service/Dockerfile
+      context: ./backend/order_service
+      dockerfile: Dockerfile
     ports:
       - "5003:5003"
   frontend:
@@ -31,4 +31,4 @@ services:
       - product-service
       - order-service
     environment:
-      REACT_APP_API_URL: http://localhost:5002
+      REACT_APP_API_URL: http://localhost:5000

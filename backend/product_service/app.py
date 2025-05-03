@@ -16,5 +16,13 @@ products = [
 def get_products():
     return jsonify(products)
 
+@app.route('/api/products/<int:prod_id>', methods=['GET'])
+def get_product(prod_id):
+    prod = next((prod for prod in products if prod['id'] == prod_id), None)
+    if prod:
+        return jsonify([prod])
+    else:
+        return jsonify({"error": "Product not found"}), 404
+
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0',port=5001) 
