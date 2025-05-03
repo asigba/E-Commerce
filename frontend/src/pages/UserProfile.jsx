@@ -32,10 +32,10 @@ export default function UserProfile() {
         <div className="user-profile">
             <h1>User Profile</h1>
             <div>
-                <strong>Name:</strong> {user.name}
+                <strong>Name:</strong> {user[0].name}
             </div>
             <div>
-                <strong>Email:</strong> {user.email}
+                <strong>Email:</strong> {user[0].email}
             </div>
             <div>
                 <strong>Joined:</strong> {new Date(user.joined).toLocaleDateString()}

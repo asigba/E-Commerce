@@ -16,9 +16,9 @@ products = [
 def get_products():
     return jsonify(products)
 
-@app.route('/api/products/<int:prod_id>', methods=['GET'])
-def get_product(prod_id):
-    prod = next((prod for prod in products if prod['id'] == prod_id), None)
+@app.route('/api/products/<int:productId>', methods=['GET'])
+def get_product(productId):
+    prod = next((prod for prod in products if prod['id'] == productId), None)
     if prod:
         return jsonify([prod])
     else:

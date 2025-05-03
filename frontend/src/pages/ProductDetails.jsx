@@ -26,10 +26,10 @@ export default function ProductDetails(){
 
     return (
         <div className="product-details">
-            <h1>{product.name}</h1>
-            <img src={product.image} alt={product.name} />
-            <p>{product.description}</p>
-            <p>Price: ${product.price}</p>
+            <h1>{product[0].name}</h1>
+            <img src={product[0].image} alt={product[0].name} />
+            <p>{product[0].description}</p>
+            <p>Price: ${product[0].price}</p>
             <button>Add to Cart</button>
         </div>
     );
