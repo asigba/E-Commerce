@@ -14,6 +14,10 @@ services:
       dockerfile: Dockerfile
     ports:
       - "5001:5001"
+    depends_on:
+      - postgres
+    environment:
+      DATABASE_URL: postgres://postgres:password@postgres:5432/ecommerce  
   order-service:  
     build:
       context: ./backend/order_service
@@ -32,3 +36,20 @@ services:
       - order-service
     environment:
       REACT_APP_API_URL: http://localhost:5000
+
+    postgres:
+      image: postgres:latest
+      restart: always
+      environment:
+        POSTGRES_USER: postgres
+        POSTGRES_PASSWORD: password
+        POSTGRES_DB: ecommerce
+      ports:
+        - "5432:5432"
+      volumes:
+        - database:/var/lib/postgresql/data
+    
+volumes:
+  database:
+  
+  

@@ -6,7 +6,7 @@ app = Flask(__name__)
 CORS(app)
 
 # Configure PostgreSQL database
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://username:password@localhost:5432/ecommerce'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:hello@localhost:4000/postgres'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # Initialize the database
@@ -26,8 +26,7 @@ class Product(db.Model):
         }
     
 # Create the database and tables
-@app.before_first_request
-def create_tables():
+with app.app_context():
     db.create_all()
     if not Product.query.first():
         # Add sample data if the table is empty
