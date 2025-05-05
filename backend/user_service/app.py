@@ -5,7 +5,7 @@ from flask_sqlalchemy import SQLAlchemy
 app = Flask(__name__)
 CORS(app)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:password@postgres:5433/ecommerce'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:password@postgres_user:5432/user_database'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
@@ -44,7 +44,7 @@ def get_users():
 def get_user(user_id):
     user = User.query.get(user_id)
     if user:
-        return jsonify(user)
+        return jsonify(user.to_dict())
     else:
         return jsonify({"error": "User not found"}), 404
 
