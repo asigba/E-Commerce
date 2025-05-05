@@ -1,21 +1,48 @@
 from flask import Flask, jsonify
 from flask_cors import CORS
+from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 CORS(app)
 
-users = [
-    {"id": 1, "name": "John Doe", "email": "john@example.com"},
-    {"id": 2, "name": "Jane Smith", "email": "jane@example.com"}
-]
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:password@postgres:5433/ecommerce'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+db = SQLAlchemy(app)
+
+class User(db.Model):
+    __tablename__ = 'users'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(50), nullable=False)
+    email = db.Column(db.String(50), nullable=False)
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'email': self.email
+        }
+
+with app.app_context():
+    db.create_all()
+    if not User.query.first():
+        # Add sample data if the table is empty
+        sample_users = [
+            User(name='John Doe', email='john@email.com'),
+            User(name='Jane Smith', email='jane@email.com')
+        ]
+        db.session.add_all(sample_users)
+        db.session.commit()
+
 
 @app.route('/api/users', methods=['GET'])
 def get_users():
-    return jsonify(users)
+    users = User.query.all()
+    return jsonify([user.to_dict() for user in users])
 
 @app.route('/api/users/<int:user_id>', methods=['GET'])
 def get_user(user_id):
-    user = next((user for user in users if user['id'] == user_id), None)
+    user = User.query.get(user_id)
     if user:
         return jsonify(user)
     else:

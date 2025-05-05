@@ -2,23 +2,40 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 export default function UserProfile() {
-    const API_URL = process.env.REACT_APP_API_URL;
+    // const API_URL = process.env.REACT_APP_API_URL;
     const {userId} = useParams();
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
 
+    // useEffect(() => {
+    //     // Simulate fetching user data
+    //     fetch(`${API_URL}api/users/${userId}`)
+    //     .then((data) => {
+    //         setUser(data);
+    //         setLoading(false);
+    //     })
+    //     .catch((error) => {
+    //         console.error('Error fetching user data:', error);
+    //         setLoading(false);
+    //     }); 
+    // }, [userId]);
+
     useEffect(() => {
-        // Simulate fetching user data
-        fetch(`${API_URL}api/users/${userId}`)
-        .then((data) => {
-            setUser(data);
-            setLoading(false);
-        })
-        .catch((error) => {
-            console.error('Error fetching user data:', error);
-            setLoading(false);
-        }); 
-    }, [userId]);
+            // Simulate fetching products from an API
+            const fetchUser = async () => {
+                try {
+                    const response = await fetch(`/api/users/${userId}`); 
+                    const data = await response.json();
+                    setUser(data);
+                } catch (error) {
+                    console.error('Error fetching user:', error);
+                } finally {
+                    setLoading(false);
+                }
+            };
+    
+            fetchUser();
+        }, []);
 
     if (loading) {
         return <div>Loading...</div>;

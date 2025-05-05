@@ -6,7 +6,7 @@ app = Flask(__name__)
 CORS(app)
 
 # Configure PostgreSQL database
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:password@postgres:5432/ecommerce'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:password@postgres:5434/ecommerce'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # Initialize the database
