@@ -18,13 +18,13 @@ pipeline {
                 stage('Build PostgreSQL for User Service') {
                     steps {
                         echo 'Building PostgreSQL for User Service...'
-                        sh 'docker compose build postgres-user'
+                        sh 'docker compose build postgres_user'
                     }
                 }
                 stage('Build PostgreSQL for Product Service') {
                     steps {
                         echo 'Building PostgreSQL for Product Service...'
-                        sh 'docker compose build postgres-product'
+                        sh 'docker compose build postgres_product'
                     }
                 }
             }
