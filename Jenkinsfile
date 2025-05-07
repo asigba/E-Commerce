@@ -11,7 +11,7 @@ pipeline {
                 echo 'Checking Docker installation...'
                 script {
                     def dockerhome = tool name: 'DOCKER', type: 'org.jenkinsci.plugins.docker.commons.tools.DockerTool'
-                    env.PATH = "${dockerhome}/bin:${env.PATH}"
+                    env.PATH = "${dockerhome}/bin:/usr/local/bin:${env.PATH}"
                 }
                 sh 'docker --version'
                 sh 'docker-compose --version'
