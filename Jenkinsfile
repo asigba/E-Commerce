@@ -20,6 +20,7 @@ pipeline {
                     chmod +x /usr/local/bin/docker-compose
                 else
                     echo "docker-compose is already installed."
+                fi
                 '''
                 sh 'docker-compose --version'
             }
