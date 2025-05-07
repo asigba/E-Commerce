@@ -9,7 +9,7 @@ pipeline {
         stage('Install Docker') {
             steps{
                 echo 'Checking Docker installation...'
-                sh 'docker compose --version'
+                sh 'docker-compose --version'
             }
         }
 
@@ -18,13 +18,13 @@ pipeline {
                 stage('Build PostgreSQL for User Service') {
                     steps {
                         echo 'Building PostgreSQL for User Service...'
-                        sh 'docker compose build postgres_user'
+                        sh 'docker-compose build postgres_user'
                     }
                 }
                 stage('Build PostgreSQL for Product Service') {
                     steps {
                         echo 'Building PostgreSQL for Product Service...'
-                        sh 'docker compose build postgres_product'
+                        sh 'docker-compose build postgres_product'
                     }
                 }
             }
@@ -34,19 +34,19 @@ pipeline {
                 stage('Build User Service Backend') {
                     steps {
                         echo 'Building the User Service Backend...'
-                        sh 'docker compose build user-service'
+                        sh 'docker-compose build user-service'
                     }
                 }
                 stage('Build Product Service Backend') {
                     steps {
                         echo 'Building the Product Service Backend...'
-                        sh 'docker compose build product-service'
+                        sh 'docker-compose build product-service'
                     }
                 }
                 stage('Build Order Service Backend') {
                     steps {
                         echo 'Building the Order Service Backend...'
-                        sh 'docker compose build order-service'
+                        sh 'docker-compose build order-service'
                     }
                 }
             }
@@ -54,7 +54,7 @@ pipeline {
         stage('Build Frontend') {
             steps {
                 echo 'Building Docker Images...'
-                sh 'docker compose build frontend'
+                sh 'docker-compose build frontend'
             }
         }
         stage('Test') {
@@ -66,14 +66,14 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying...'
-                sh 'docker compose up -d'
+                sh 'docker-compose up -d'
             }
         }
     }
     post {
         always {
             echo 'Cleaning up Docker resources...'
-            sh 'docker compose down'
+            sh 'docker-compose down'
         }
     }
 
