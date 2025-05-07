@@ -14,6 +14,7 @@ pipeline {
                     env.PATH = "${dockerhome}/bin:${env.PATH}"
                 }
                 sh 'docker --version'
+                sh 'docker compose --version'
             }
         }
 
