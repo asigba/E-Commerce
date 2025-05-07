@@ -6,6 +6,13 @@ pipeline {
     }
 
     stages {
+        stage('Check Docker') {
+            steps{
+                echo 'Checking Docker installation...'
+                sh 'docker --version'
+            }
+        }
+
         stage('Build Database') {
             parallel {
                 stage('Build PostgreSQL for User Service') {
@@ -47,7 +54,7 @@ pipeline {
         stage('Build Frontend') {
             steps {
                 echo 'Building Docker Images...'
-                sh 'docker compose build'
+                sh 'docker compose build frontend'
             }
         }
         stage('Test') {
