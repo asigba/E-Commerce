@@ -9,20 +9,7 @@ pipeline {
         stage('Install Docker') {
             steps{
                 echo 'Checking Docker installation...'
-                script {
-                    def dockerhome = tool name: 'DOCKER', type: 'org.jenkinsci.plugins.docker.commons.tools.DockerTool'
-                    env.PATH = "${dockerhome}/bin:/usr/local/bin:${env.PATH}"
-                }
-                sh '''
-                if ! [ -x "$(command -v docker-compose)" ]; then
-                    echo "Installing docker-compose..."
-                    sudo curl -L "https://github.com/docker/compose/releases/download/v2.20.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-                    sudo chmod +x /usr/local/bin/docker-compose
-                else
-                    echo "docker-compose is already installed."
-                fi
-                '''
-                sh 'docker-compose --version'
+                sh 'docker compose --version'
             }
         }
 
@@ -31,13 +18,13 @@ pipeline {
                 stage('Build PostgreSQL for User Service') {
                     steps {
                         echo 'Building PostgreSQL for User Service...'
-                        sh 'docker-compose build postgres-user'
+                        sh 'docker compose build postgres-user'
                     }
                 }
                 stage('Build PostgreSQL for Product Service') {
                     steps {
                         echo 'Building PostgreSQL for Product Service...'
-                        sh 'docker-compose build postgres-product'
+                        sh 'docker compose build postgres-product'
                     }
                 }
             }
@@ -47,19 +34,19 @@ pipeline {
                 stage('Build User Service Backend') {
                     steps {
                         echo 'Building the User Service Backend...'
-                        sh 'docker-compose build user-service'
+                        sh 'docker compose build user-service'
                     }
                 }
                 stage('Build Product Service Backend') {
                     steps {
                         echo 'Building the Product Service Backend...'
-                        sh 'docker-compose build product-service'
+                        sh 'docker compose build product-service'
                     }
                 }
                 stage('Build Order Service Backend') {
                     steps {
                         echo 'Building the Order Service Backend...'
-                        sh 'docker-compose build order-service'
+                        sh 'docker compose build order-service'
                     }
                 }
             }
@@ -86,7 +73,7 @@ pipeline {
     post {
         always {
             echo 'Cleaning up Docker resources...'
-            sh 'docker-compose down'
+            sh 'docker compose down'
         }
     }
 
