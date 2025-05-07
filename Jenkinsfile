@@ -13,6 +13,8 @@ pipeline {
                     def dockerhome = tool name: 'DOCKER', type: 'org.jenkinsci.plugins.docker.commons.tools.DockerTool'
                     env.PATH = "${dockerhome}/bin:/usr/local/bin:${env.PATH}"
                 }
+                sh 'uname -a'
+                sh 'systeminfo'
                 sh 'docker --version'
                 sh 'docker-compose --version'
             }
