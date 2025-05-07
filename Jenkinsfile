@@ -6,9 +6,13 @@ pipeline {
     }
 
     stages {
-        stage('Check Docker') {
+        stage('Install Docker') {
             steps{
                 echo 'Checking Docker installation...'
+                script {
+                    def dockerhome = tool name: 'DOCKER', type: 'org.jenkinsci.plugins.docker.commons.tools.DockerTool'
+                    env.PATH = "${dockerhome}/bin:${env.PATH}"
+                }
                 sh 'docker --version'
             }
         }
