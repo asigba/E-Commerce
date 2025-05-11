@@ -2,29 +2,17 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 export default function UserProfile() {
-    // const API_URL = process.env.REACT_APP_API_URL;
+    const API_URL = process.env.REACT_APP_USER_URL;
     const {userId} = useParams();
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
 
-    // useEffect(() => {
-    //     // Simulate fetching user data
-    //     fetch(`${API_URL}api/users/${userId}`)
-    //     .then((data) => {
-    //         setUser(data);
-    //         setLoading(false);
-    //     })
-    //     .catch((error) => {
-    //         console.error('Error fetching user data:', error);
-    //         setLoading(false);
-    //     }); 
-    // }, [userId]);
 
     useEffect(() => {
             // Simulate fetching products from an API
             const fetchUser = async () => {
                 try {
-                    const response = await fetch(`/api/users/${userId}`); 
+                    const response = await fetch(`${API_URL}/api/users/${userId}`); 
                     const data = await response.json();
                     setUser(data);
                 } catch (error) {
@@ -49,10 +37,10 @@ export default function UserProfile() {
         <div className="user-profile">
             <h1>User Profile</h1>
             <div>
-                <strong>Name:</strong> {user[0].name}
+                <strong>Name:</strong> {user.name}
             </div>
             <div>
-                <strong>Email:</strong> {user[0].email}
+                <strong>Email:</strong> {user.email}
             </div>
             <div>
                 <strong>Joined:</strong> {new Date(user.joined).toLocaleDateString()}

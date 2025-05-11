@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 export default function ProductDetails(){
-    // const API_URL = "http://localhost:5001";
+    const API_URL = process.env.REACT_APP_PRODUCT_URL;
     const { productId } = useParams();
     const [product, setProduct] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -25,7 +25,10 @@ export default function ProductDetails(){
 
             const fetchProduct = async () => {
                 try {
-                    const response = await fetch(`/api/products/${productId}`);
+                    const response = await fetch(`${API_URL}/api/products/${productId}`);
+                    if(!response.ok) {
+                        throw new Error(`HTTP ERROR! Status: ${response.status}`);
+                    }
                     const data = await response.json();
                     setProduct(data);
                 } catch (error) {
