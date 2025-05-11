@@ -9,7 +9,7 @@ export default function Products() {
         // Simulate fetching products from an API
         const fetchProducts = async () => {
             try {
-                const response = await fetch(`${API_URL}}/api/products`); // Replace with your API endpoint
+                const response = await fetch(`${API_URL}/api/products`); // Replace with your API endpoint
                 const data = await response.json();
                 setProducts(data);
             } catch (error) {

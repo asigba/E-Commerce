@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 export default function UserProfile() {
-    const API_URL = process.env.REACT_APP_USER_URL;
+    const API_URL = process.env.REACT_APP_USER_URL || "http://localhost:5002";
     const {userId} = useParams();
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
