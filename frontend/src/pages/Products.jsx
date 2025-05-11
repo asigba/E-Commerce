@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 export default function Products() {
-    const API_URL = "http://localhost:5001";
+    const API_URL = process.env.REACT_APP_PRODUCT_URL || "http://localhost:5001";
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
 
@@ -34,6 +34,7 @@ export default function Products() {
                     {products.map((product) => (
                         <li key={product.id}>
                             <h2>{product.name}</h2>
+                            <img src={product.image} alt={product.name} style={{ width: '100px', height: '100px' }} />
                             <p>{product.description}</p>
                             <p>Price: ${product.price}</p>
                         </li>

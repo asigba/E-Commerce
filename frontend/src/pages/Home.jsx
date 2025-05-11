@@ -21,23 +21,26 @@ export default function Home() {
 
 
     return (
-        <div>
-            <header className="home-header">
-                <h1>Welcome to Our Store</h1>
-                <p>Your one-stop shop for all your needs!</p>
-                <button><Link to="/products">Shop Now</Link></button>
+        <div className="home-container">
+            <header className="home-hero">
+                <div className="hero-content">
+                    <h1>Welcome to Our Store</h1>
+                    <p>Your one-stop shop for all your needs!</p>
+                    <Link to="/products" className="shop-now-button">Shop Now</Link>
+                </div>
             </header>
-            <section>
-                <h2 className="feature-products">Featured Products</h2>
+
+            <section className="featured-products">
+                <h2>Featured Products</h2>
                 {loading ? (
                     <p>Loading products...</p>
-                ): (<div className="product-list">
+                ): (<div className="product-grid">
                         {products.map((product) => (
-                            <div key={product.id} className='product-item'>
-                                <img src={product.image} alt={product.name} />
-                                <h3>{product.name}</h3>
-                                <p>${product.price}</p>
-                                <button><Link to={`/products/${product.id}`}>View Details</Link></button>
+                            <div key={product.id} className='product-card'>
+                                <img src={product.image} alt={product.name} className="product-image"/>
+                                <h3 className="product-name">{product.name}</h3>
+                                <p className="product-price">${product.price}</p>
+                                <Link to={`/products/${product.id}`} className="view-details-button">View Details</Link>
                             </div>
                         ))}
                     </div>

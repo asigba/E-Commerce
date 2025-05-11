@@ -17,12 +17,14 @@ class Product(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), nullable=False)
     price = db.Column(db.Float, nullable=False)
+    image = db.Column(db.String(255), nullable=True)    
 
     def to_dict(self):
         return {
             'id': self.id,
             'name': self.name,
-            'price': self.price
+            'price': self.price,
+            'image': f"http://localhost:5001{self.image}"
         }
     
 # Create the database and tables
@@ -31,9 +33,9 @@ with app.app_context():
     if not Product.query.first():
         # Add sample data if the table is empty
         sample_products = [
-            Product(name='Chipotle', price=10.99),
-            Product(name='Cava', price=20.99),
-            Product(name='Nobu', price=30.99)
+            Product(name='Vintage Phone', price=59.99, image='/static/images/vintage-phone.jpg'),
+            Product(name='Vintage Bike', price=26.94, image='/static/images/vintage-bike.jpg'),
+            Product(name='Vintage Car', price=161.94, image='/static/images/vintage-car.jpg'),
         ]
         db.session.add_all(sample_products)
         db.session.commit()

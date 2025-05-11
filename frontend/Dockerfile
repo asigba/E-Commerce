@@ -1,4 +1,4 @@
-FROM node:18-alpine
+FROM node:18-alpine AS build
 
 WORKDIR /app
 
@@ -10,11 +10,15 @@ COPY . .
 
 RUN npm run build
 
-FROM nginx:alpine
+FROM node:18-alpine
 
-COPY --from=0 /app/build /usr/share/nginx/html
+RUN npm install -g serve
 
-EXPOSE 80
+WORKDIR /app
 
-CMD ["nginx", "-g", "daemon off;"]
-# This Dockerfile is for a Node.js application that builds a React app and serves it with Nginx
+COPY --from=build /app/build /app/build
+
+EXPOSE 3000
+
+CMD ["serve", "-s", "build","--single","-l","3000"]
+# Command to serve the app 
