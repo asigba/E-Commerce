@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import './ProductDetails.css';
+import Navbar from './Navbar';
 
 export default function ProductDetails(){
     const API_URL = process.env.REACT_APP_PRODUCT_URL || "http://localhost:5001";
@@ -33,6 +35,8 @@ export default function ProductDetails(){
     if (error) return <div>{error}</div>;
 
     return (
+        <>
+        <Navbar />
         <div className="product-details">
             <h1>{product.name}</h1>
             <img src={product.image} alt={product.name} className="product-image"/>
@@ -41,6 +45,7 @@ export default function ProductDetails(){
             <button className="add-to-cart-button">Add to Cart</button>
             <Link to="/products" className="back-button">Back to Products</Link>
         </div>
+        </>
     );
 };
 
