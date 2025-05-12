@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import './ProductDetails.css';
 
 export default function ProductDetails(){
     const API_URL = process.env.REACT_APP_PRODUCT_URL || "http://localhost:5001";
@@ -34,10 +35,11 @@ export default function ProductDetails(){
     return (
         <div className="product-details">
             <h1>{product.name}</h1>
-            <img src={product.image} alt={product.name} />
+            <img src={product.image} alt={product.name} className="product-image"/>
             {/* <p>{product.description}</p> */}
             <p>Price: ${product.price}</p>
-            <button>Add to Cart</button>
+            <button className="add-to-cart-button">Add to Cart</button>
+            <Link to="/products" className="back-button">Back to Products</Link>
         </div>
     );
 };

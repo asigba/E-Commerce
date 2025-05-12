@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import {Link} from 'react-router-dom';
+import './Products.css'; 
 
 export default function Products() {
     const API_URL = process.env.REACT_APP_PRODUCT_URL || "http://localhost:5001";
@@ -27,19 +29,20 @@ export default function Products() {
     }
 
     return (
-        <div>
+        <div className="products-container">
             <h1>Products</h1>
             {products.length > 0 ? (
-                <ul>
+                <div className="products-grid">
                     {products.map((product) => (
-                        <li key={product.id}>
+                        <div key={product.id} className="product-card">
                             <h2>{product.name}</h2>
-                            <img src={product.image} alt={product.name} style={{ width: '100px', height: '100px' }} />
+                            <img src={product.image} alt={product.name} style={{ width: '100px', height: '100px' }} className="product-image"/>
                             <p>{product.description}</p>
                             <p>Price: ${product.price}</p>
-                        </li>
+                            <Link to={`/products/${product.id}`} className="details-button">View Details</Link>
+                        </div>
                     ))}
-                </ul>
+                </div>
             ) : (
                 <p>No products available.</p>
             )}
