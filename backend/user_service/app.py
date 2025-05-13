@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 
@@ -15,6 +15,7 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), nullable=False)
     email = db.Column(db.String(50), nullable=False)
+    password = db.Column(db.String(255), nullable=False)
 
     def to_dict(self):
         return {
@@ -28,8 +29,8 @@ with app.app_context():
     if not User.query.first():
         # Add sample data if the table is empty
         sample_users = [
-            User(name='John Doe', email='john@email.com'),
-            User(name='Jane Smith', email='jane@email.com')
+            User(name='John Doe', email='john@email.com', password='password123'),
+            User(name='Jane Smith', email='jane@email.com', password='password456'),
         ]
         db.session.add_all(sample_users)
         db.session.commit()
@@ -47,6 +48,18 @@ def get_user(user_id):
         return jsonify(user.to_dict())
     else:
         return jsonify({"error": "User not found"}), 404
+    
+@app.route('/api/login', methods=['POST'])
+def login():
+    data = request.json
+    email = data.get('email')
+    password = data.get('password')
+
+    user = User.query.filter_by(email=email).first()
+    if user and user['password'] == password:
+        return jsonify({"message": "Login successful"}), 200
+    else:
+        return jsonify({"error": "Invalid credentials"}), 401
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0',port=5002)
