@@ -24,8 +24,7 @@ export default function Login() {
             });
 
             const data = await response.json();
-            console.log('Login successful:', data);
-
+            
         } catch(error) {
             console.error('Error logging in:', error);
             alert('Login failed. Please try again.');
