@@ -22,9 +22,14 @@ export default function Login() {
                 },
                 body: JSON.stringify(formData),
             });
-
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
             const data = await response.json();
-            
+            console.log('Login successful:', data);
+            alert('Login successful! Redirecting...');
+            window.location.href = '/'; // Redirect to home page or dashboard
+
         } catch(error) {
             console.error('Error logging in:', error);
             alert('Login failed. Please try again.');
