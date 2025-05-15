@@ -3,8 +3,7 @@ import './Register.css';
 
 export default function Register(){
     const [formData, setFormData] = useState({
-        firstName: '',
-        lastName: '',
+        fullName: '',
         email: '',
         password: ''
     });
@@ -28,15 +27,15 @@ export default function Register(){
         return true;
     }
 
-    function handleSubmit(){
+    async function handleSubmit(e){
         console.log('Form submitted');
-
+        e.preventDefault(); // Prevent the form from refreshing the page
         const check = confirmPassword();
         if (!check) {
             return;
         } else {
             try {
-                const response = fetch('http://localhost:5002/api/register', {
+                const response = await fetch('http://localhost:5002/api/register', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -44,9 +43,10 @@ export default function Register(){
                     body: JSON.stringify(formData),
                 });
                 if (!response.ok) {
-                    throw new Error('Network response was not ok');
+                    const errorData = await response.json();
+                    throw new Error(errorData.message || 'Network response was not ok');
                 }
-                const data = response.json();
+                const data = await response.json();
                 console.log('Registration successful:', data);
                 alert('Registration successful! Redirecting...');
                 window.location.href = '/'; // Redirect to home page or dashboard
@@ -64,12 +64,8 @@ export default function Register(){
             <h2>Register</h2>
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
-                    <label>First Name</label>
-                    <input type="text" id="firstName" name="firstName" value={formData.firstName} onChange={handleChange} placeholder="First Name" required/>
-                </div>
-                <div className="form-group">
-                    <label>Last Name</label>
-                    <input type="text" id="lastName" name="lastName" value={formData.lastName} placeholder="Last Name" onChange={handleChange} required/>
+                    <label>Full Name</label>
+                    <input type="text" id="fullName" name="fullName" value={formData.fullName} onChange={handleChange} placeholder="First Name" required/>
                 </div>
                 <div className="form-group">
                     <label>Email</label>

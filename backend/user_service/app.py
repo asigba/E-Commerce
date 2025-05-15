@@ -64,11 +64,9 @@ def login():
 @app.route('/api/register', methods=['POST'])
 def register():
     data = request.json
-    fisrtName = data.get('firstName')
-    lastName = data.get('lastName')
+    name = data.get('fullName')
     email = data.get('email')
     password = data.get('password')
-    name = f"{fisrtName} {lastName}"
 
     if User.query.filter_by(email=email).first():
         return jsonify({"error": "Email already exists"}), 400
