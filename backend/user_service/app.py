@@ -60,6 +60,24 @@ def login():
         return jsonify({"message": "Login successful"}), 200
     else:
         return jsonify({"error": "Invalid credentials"}), 401
+    
+@app.route('/api/users/register', methods=['POST'])
+def register():
+    data = request.json
+    fisrtName = data.get('firstName')
+    lastName = data.get('lastName')
+    email = data.get('email')
+    password = data.get('password')
+    name = f"{fisrtName} {lastName}"
+
+    if User.query.filter_by(email=email).first():
+        return jsonify({"error": "Email already exists"}), 400
+
+    new_user = User(name=name, email=email, password=password)
+    db.session.add(new_user)
+    db.session.commit()
+
+    return jsonify({"message": "User registered successfully"}), 201
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0',port=5002)
