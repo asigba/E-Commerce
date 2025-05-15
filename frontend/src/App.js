@@ -8,6 +8,7 @@ import Cart from './pages/Cart';
 import Checkout from './pages/Checkout';
 import Login from './pages/Login'; 
 import Navbar from './pages/Navbar';
+import Register from './pages/Register';
 import './App.css';
 import { useLocation } from 'react-router-dom';
 
@@ -28,7 +29,8 @@ function AppContent() {
             <Route path='/checkout' element={<Checkout />} />
             <Route path='/login' element={<Login />} />
             <Route path='/users/:userId' element={<UserProfile />} />
-            <Route path='/products/:productId' element={<ProductDetails />} />         
+            <Route path='/products/:productId' element={<ProductDetails />} />     
+            <Route path='/register' element={<Register />} />    
           </Routes>  
         </div>
       

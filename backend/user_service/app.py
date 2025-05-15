@@ -61,7 +61,7 @@ def login():
     else:
         return jsonify({"error": "Invalid credentials"}), 401
     
-@app.route('/api/users/register', methods=['POST'])
+@app.route('/api/register', methods=['POST'])
 def register():
     data = request.json
     fisrtName = data.get('firstName')
