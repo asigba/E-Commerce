@@ -15,6 +15,10 @@ export default function AuthProvider({children}) {
         setUser(userData);
         localStorage.setItem('isSignedIn', true);
         localStorage.setItem('user', JSON.stringify(userData)); 
+
+        console.log('User data saved to localStorage:', user);
+        console.log('isSIgnedIn:',isSignedIn);
+        
     }
 
     function logout() {

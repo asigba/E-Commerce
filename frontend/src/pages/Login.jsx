@@ -1,11 +1,13 @@
 import React, { useContext, useState } from 'react';
 import {AuthContext} from './AuthContext';
+import { useNavigate } from 'react-router-dom';
 import './Login.css';
 
 export default function Login() {
     const [formData, setFormData] = useState({ email: '', password: '' });
     const [loading, setLoading] = useState(false);
     const {login} = useContext(AuthContext);
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -31,10 +33,10 @@ export default function Login() {
             console.log('Login successful:', data);
             alert('Login successful! Redirecting...');
 
-            const userData = {id:data.id,name: data.name, email: data.email};
+            const userData = {id:data.id, name: data.name, email: data.email};
             login(userData); // Call the login function from AuthContext
-            
-            window.location.href = '/'; // Redirect to home page or dashboard
+
+            navigate('/')
 
         } catch(error) {
             console.error('Error logging in:', error);
