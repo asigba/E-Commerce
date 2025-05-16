@@ -10,7 +10,7 @@ import Login from './pages/Login';
 import Navbar from './pages/Navbar';
 import Register from './pages/Register';
 import './App.css';
-import {AuthProvider} from './pages/AuthContext';
+import AuthProvider from './pages/AuthContext';
 import { useLocation } from 'react-router-dom';
 
 function AppContent() {
