@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import {AuthContext} from './AuthContext';
 import './Login.css';
 
 export default function Login() {
     const [formData, setFormData] = useState({ email: '', password: '' });
     const [loading, setLoading] = useState(false);
+    const {login} = useContext(AuthContext);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -28,6 +30,8 @@ export default function Login() {
             const data = await response.json();
             console.log('Login successful:', data);
             alert('Login successful! Redirecting...');
+            const userData = {name: data.name, email: data.email};
+            login(userData); // Call the login function from AuthContext
             window.location.href = '/'; // Redirect to home page or dashboard
 
         } catch(error) {
