@@ -30,8 +30,10 @@ export default function Login() {
             const data = await response.json();
             console.log('Login successful:', data);
             alert('Login successful! Redirecting...');
-            const userData = {name: data.name, email: data.email};
+
+            const userData = {id:data.id,name: data.name, email: data.email};
             login(userData); // Call the login function from AuthContext
+            
             window.location.href = '/'; // Redirect to home page or dashboard
 
         } catch(error) {

@@ -4,8 +4,9 @@ import {AuthContext} from './AuthContext';
 import './Navbar.css'; 
 
 export default function Navbar() {
-    const {isSignedIn, logout} = useContext(AuthContext);
-    const userId = localStorage.getItem('userId');
+    const {isSignedIn,user, logout} = useContext(AuthContext);
+    const userId = user ? user.id : null;
+    const link = userId ? `/users/${userId}` : '/login';
 
     return (
         <nav className="navbar">
@@ -17,7 +18,7 @@ export default function Navbar() {
                 <li><Link to="/carts">Cart</Link></li>
                 {isSignedIn ? (
                     <>
-                        <li><Link to="/users/:userId">Profile</Link></li>
+                        <li><Link to={link}>user.name</Link></li>
                         <li><button onClick={logout} className="logout-button">Logout</button></li>
                     </>):(
 

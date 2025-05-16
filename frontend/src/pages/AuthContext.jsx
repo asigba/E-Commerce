@@ -4,7 +4,7 @@ export const AuthContext = createContext();
 
 export default function AuthProvider({children}) {
     const [isSignedIn, setIsSignedIn] = useState(() => {
-        return localStorage.getItem('isSignedIn') === 'true';
+        return localStorage.getItem('isSignedIn') === 'false';
     });
     const [user, setUser] = useState(() => {
         return JSON.parse(localStorage.getItem('user')) || null;
