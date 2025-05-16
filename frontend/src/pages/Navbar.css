@@ -32,3 +32,17 @@
 .navbar-links li a:hover {
     color: #d1e7ff;
 }
+
+.navbar-link{
+    color: #007bff;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.navbar-link:hover {
+    text-decoration: underline;
+}
+
+.logout-link {
+    color: #dc3545;
+}

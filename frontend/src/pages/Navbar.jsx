@@ -20,7 +20,7 @@ export default function Navbar() {
                 {isSignedIn ? (
                     <>
                         <li><Link to={link}>{userName}</Link></li>
-                        <li><button onClick={logout} className="logout-button">Logout</button></li>
+                        <li><Link onClick={logout} className="navbar-link logout-link">Logout</Link></li>
                     </>):(
 
                         <li><Link to="/login">Login</Link></li>
