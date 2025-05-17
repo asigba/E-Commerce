@@ -44,7 +44,6 @@ function App() {
   return (
     <AuthProvider> 
       <CartProvider> 
-        <Navbar />
         <Router>
           <AppContent />
         </Router>

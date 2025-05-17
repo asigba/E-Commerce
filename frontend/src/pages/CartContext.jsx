@@ -6,7 +6,7 @@ export function useCart() {
     return useContext(CartContext);
 }
 
-export function CartProvider({ children }) {
+export default function CartProvider({ children }) {
     const [cartItems, setCartItems] = useState([]);
 
     const addToCart = (product) => {

@@ -16,7 +16,7 @@ export default function Navbar() {
             </div>
             <ul className="navbar-links">
                 <li><Link to="/products">Products</Link></li>
-                <li><Link to="/carts">Cart</Link></li>
+                <li><Link to="/cart">Cart</Link></li>
                 {isSignedIn ? (
                     <>
                         <li><Link to={link}>{userName}</Link></li>
