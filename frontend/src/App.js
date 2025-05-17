@@ -11,6 +11,7 @@ import Navbar from './pages/Navbar';
 import Register from './pages/Register';
 import './App.css';
 import AuthProvider from './pages/AuthContext';
+import CartProvider from './pages/CartContext';
 import { useLocation } from 'react-router-dom';
 
 function AppContent() {
@@ -42,9 +43,12 @@ function AppContent() {
 function App() {
   return (
     <AuthProvider> 
-      <Router>
-        <AppContent />
-      </Router>
+      <CartProvider> 
+        <Navbar />
+        <Router>
+          <AppContent />
+        </Router>
+      </CartProvider>
     </AuthProvider>
   );
 }

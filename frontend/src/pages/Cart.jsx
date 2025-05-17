@@ -1,11 +1,8 @@
 import React from 'react';
+import { useCart } from './CartContext';
 
 export default function Cart(){
-    const cartItems = [
-        { id: 1, name: 'Product 1', price: 29.99, quantity: 2 },
-        { id: 2, name: 'Product 2', price: 49.99, quantity: 1 },
-        { id: 3, name: 'Product 3', price: 19.99, quantity: 3 },
-    ];
+    const {cartItems} = useCart();
 
     const calculateTotal = () => {
         return cartItems.reduce((total, item) => total + item.price * item.quantity, 0).toFixed(2);

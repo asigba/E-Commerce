@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import {Link} from 'react-router-dom';
 import './ProductDetails.css';
+import { useCart } from './CartContext';
 
 export default function ProductDetails(){
     const API_URL = process.env.REACT_APP_PRODUCT_URL || "http://localhost:5001";
@@ -9,6 +10,7 @@ export default function ProductDetails(){
     const [product, setProduct] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const {addToCart} = useCart();
 
     useEffect(() => {
 
@@ -40,7 +42,7 @@ export default function ProductDetails(){
             <img src={product.image} alt={product.name} className="product-image"/>
             {/* <p>{product.description}</p> */}
             <p>Price: ${product.price}</p>
-            <button className="add-to-cart-button">Add to Cart</button>
+            <button className="add-to-cart-button" onClick={() => addToCart(product)}>Add to Cart</button>
             <Link to="/products" className="back-button">Back to Products</Link>
         </div>
         </>
