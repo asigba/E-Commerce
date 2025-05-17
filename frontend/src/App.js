@@ -13,6 +13,7 @@ import './App.css';
 import AuthProvider from './pages/AuthContext';
 import CartProvider from './pages/CartContext';
 import { useLocation } from 'react-router-dom';
+import Checkout from './pages/Checkout';
 
 function AppContent() {
   const location = useLocation();
@@ -33,6 +34,7 @@ function AppContent() {
             <Route path='/users/:userId' element={<UserProfile />} />
             <Route path='/products/:productId' element={<ProductDetails />} />     
             <Route path='/register' element={<Register />} />    
+            <Route path='/checkout' element={<Checkout />} />
           </Routes>  
         </div>
       

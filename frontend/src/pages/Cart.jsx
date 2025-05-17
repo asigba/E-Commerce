@@ -24,6 +24,7 @@ export default function Cart(){
                     </ul>
                     <h2>Total: ${calculateTotal()}</h2>
                     <button style={{ padding: '10px 20px', cursor: 'pointer' }}>Checkout</button>
+                    <Link to="/checkout" style={{ textDecoration: 'none', color: 'white' }}>Checkout</Link>
                 </div>
             )}
         </div>
