@@ -13,7 +13,6 @@ import './App.css';
 import AuthProvider from './pages/AuthContext';
 import CartProvider from './pages/CartContext';
 import { useLocation } from 'react-router-dom';
-import Checkout from './pages/Checkout';
 
 function AppContent() {
   const location = useLocation();
