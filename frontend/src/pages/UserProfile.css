@@ -1,0 +1,43 @@
+.user-profile-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f9f9f9;
+    padding: 20px;
+}
+
+.user-profile-card {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px 30px;
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+}
+
+.user-profile-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333333;
+}
+
+.user-profile-info {
+    font-size: 16px;
+    color: #555555;
+    line-height: 1.6;
+}
+
+.user-profile-info div {
+    margin-bottom: 10px;
+}
+
+.user-profile-loading,
+.user-profile-error {
+    font-size: 18px;
+    color: #666666;
+    text-align: center;
+    margin-top: 20px;
+}

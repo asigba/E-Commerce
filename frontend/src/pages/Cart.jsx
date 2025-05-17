@@ -1,5 +1,6 @@
 import React from 'react';
 import { useCart } from './CartContext';
+import './Cart.css';
 
 export default function Cart(){
     const {cartItems} = useCart();
@@ -9,22 +10,28 @@ export default function Cart(){
     };
 
     return (
-        <div style={{ padding: '20px' }}>
-            <h1>Shopping Cart</h1>
+        <div className="cart-container">
+            <h1 className="cart-title">Shopping Cart</h1>
             {cartItems.length === 0 ? (
-                <p>Your cart is empty.</p>
+                <p className="cart-empty">Your cart is empty.</p>
             ) : (
-                <div>
-                    <ul>
+                <div className="cart-content">
+                    <ul className="cart-items">
                         {cartItems.map((item) => (
-                            <li key={item.id} style={{ marginBottom: '10px' }}>
-                                <strong>{item.name}</strong> - ${item.price} x {item.quantity}
+                            <li key={item.id} className="cart-item">
+                                <div className="cart-item-details">
+                                    <strong>{item.name}</strong>
+                                    <span>${item.price} x {item.quantity}</span>
+                                </div>
                             </li>
                         ))}
                     </ul>
-                    <h2>Total: ${calculateTotal()}</h2>
-                    <button style={{ padding: '10px 20px', cursor: 'pointer' }}>Checkout</button>
-                    <Link to="/checkout" style={{ textDecoration: 'none', color: 'white' }}>Checkout</Link>
+                    <div className="cart-summary">
+                        <h2>Total: ${calculateTotal()}</h2>
+                        <Link to="/checkout" className="cart-checkout-button">
+                            Proceed to Checkout
+                        </Link>
+                    </div>
                 </div>
             )}
         </div>
