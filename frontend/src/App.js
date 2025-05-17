@@ -34,7 +34,6 @@ function AppContent() {
             <Route path='/users/:userId' element={<UserProfile />} />
             <Route path='/products/:productId' element={<ProductDetails />} />     
             <Route path='/register' element={<Register />} />    
-            <Route path='/checkout' element={<Checkout />} />
           </Routes>  
         </div>
       
