@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import {Link} from 'react-router-dom';
 import './ProductDetails.css';
-import { useCart } from './CartContext';
+import { useCart } from '../../context/CartContext';
 
 export default function ProductDetails(){
     const API_URL = process.env.REACT_APP_PRODUCT_URL || "http://localhost:5001";
