@@ -1,7 +1,7 @@
 import React from "react";
 
 export default function PaymentForm(props) {
-    const {formData, handleChange} = props;
+    const {formData, handleChange, errors} = props;
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
