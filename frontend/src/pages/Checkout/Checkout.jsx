@@ -31,9 +31,12 @@ export default function Checkout (){
         <div className="checkout">
             <h1>Checkout</h1>
             <CartSummary />
-            <ShippingForm />
-            <PaymentForm />
-            <CheckoutButton />
+            <form onSubmit={handleSubmit}>
+                <ShippingForm />
+                <PaymentForm />
+                <CheckoutButton />
+            </form>
+            
         </div>
     );
 };

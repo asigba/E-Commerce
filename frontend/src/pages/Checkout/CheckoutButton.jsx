@@ -2,6 +2,6 @@ import React from 'react';
 
 export default function CheckoutButton() {
     return(<>
-        <button>Confirm</button>
+        <button type="submit" className="checkout-button">Confirm</button>
     </>);
 }
