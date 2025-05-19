@@ -1,0 +1,48 @@
+.checkout {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 24px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+}
+
+.form-group {
+    margin-bottom: 16px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-row {
+    display: flex;
+    gap: 16px;
+}
+
+input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+}
+
+.field-error {
+    color: #d32f2f;
+    font-size: 0.9em;
+    margin-top: 4px;
+}
+
+.success-message {
+    color: #388e3c;
+    background: #e8f5e9;
+    padding: 8px;
+    border-radius: 4px;
+    margin-bottom: 16px;
+}
+
+.error-message {
+    color: #d32f2f;
+    background: #ffebee;
+    padding: 8px;
+    border-radius: 4px;
+    margin-bottom: 16px;
+}
