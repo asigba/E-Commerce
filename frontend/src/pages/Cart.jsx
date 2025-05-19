@@ -4,20 +4,24 @@ import './Cart.css';
 import { Link } from 'react-router-dom';
 
 export default function Cart(){
-    // const {cartItems} = useCart();
+    const {cartItems, removeItem} = useCart();
     const [total, setTotal] = useState(0);
 
-    const cartItems = [
-        { id: 1, name: 'Product 1', price: 10.00, quantity: 2 },
-        { id: 2, name: 'Product 2', price: 15.00, quantity: 1 },
-        { id: 3, name: 'Product 3', price: 20.00, quantity: 3 },
-    ];
+    // const cartItems = [
+    //     { id: 1, name: 'Product 1', price: 10.00, quantity: 2 },
+    //     { id: 2, name: 'Product 2', price: 15.00, quantity: 1 },
+    //     { id: 3, name: 'Product 3', price: 20.00, quantity: 3 },
+    // ];
 
     const calculateTotal = () => {
         setTotal(cartItems.reduce((total, item) => total + item.price * item.quantity, 0).toFixed(2));
     };
 
     useEffect(calculateTotal, [cartItems]);
+
+    function handleQuantityChange(id, newQuantity) {
+        removeItem(id, newQuantity);
+    }
 
     return (
         <div className="cart-container">
@@ -31,7 +35,7 @@ export default function Cart(){
                             <li key={item.id} className="cart-item">
                                 <div className="cart-item-details">
                                     <strong>{item.name}</strong>
-                                    <span>${item.price} x {item.quantity}</span>
+                                    <span>${item.price} x <select value={item.quantity} onChange={e => handleQuantityChange(item.id, e.target.value)}>{[...Array(10).keys()].map(n => (<option key={n + 1} value={n+1}>{n+1}</option>))}</select></span>
                                 </div>
                             </li>
                         ))}

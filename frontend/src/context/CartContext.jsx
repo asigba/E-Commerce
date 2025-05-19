@@ -26,11 +26,11 @@ export default function CartProvider({ children }) {
         });
     };
 
-    const removeFromCart = (productId) => {
-        setCartItems(prevItems => prevItems.filter(item => item.id !== productId));
+    const removeItem = (Id, newQuantity) => {
+        setCartItems(items => items.map(item => item.id === Id ? {...item, quantity: Number(newQuantity)} : item));
     };
 
-    const value = { cartItems, addToCart };
+    const value = { cartItems, addToCart, removeItem };
 
     return (
         <CartContext.Provider value={value}>
