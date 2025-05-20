@@ -2,10 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { useCart } from '../context/CartContext';
 import './Cart.css';
 import { Link } from 'react-router-dom';
+import {isSignedIn} from '../context/AuthContext';
+
 
 export default function Cart(){
     const {cartItems, removeItem} = useCart();
     const [total, setTotal] = useState(0);
+
 
     // const cartItems = [
     //     { id: 1, name: 'Product 1', price: 10.00, quantity: 2 },
@@ -40,12 +43,16 @@ export default function Cart(){
                             </li>
                         ))}
                     </ul>
-                    <div className="cart-summary">
+                    {isSignedIn ?
+                    (<div className="cart-summary">
                         <h2>Total: ${total}</h2>
                         <Link to="/checkout" className="cart-checkout-button">
                             Proceed to Checkout
                         </Link>
-                    </div>
+                    </div>) : <Link to="/login" className="cart-checkout-button">
+                        Please login to proceed to Checkout 
+                        </Link>
+                    }
                 </div>
             )}
         </div>
