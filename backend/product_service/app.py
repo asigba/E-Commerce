@@ -56,5 +56,10 @@ def get_product(productId):
     else:
         return jsonify({'error': 'Product not found'}), 404
 
+@app.route('/api/products/<string:category>', methods=['GET'])
+def get_products_by_category(category):
+    products = Product.query.filter_by(category=category).all()
+    return jsonify([product.to_dict() for product in products])
+
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0',port=5001) 
