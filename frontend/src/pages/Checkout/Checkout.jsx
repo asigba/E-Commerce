@@ -21,6 +21,9 @@ export default function Checkout (){
 
     const [errors, setErrors] = useState({});
     const [success, setSuccess] = useState('');
+    const [loading, setLoading] = useState(false);
+    const isFormInvalid = Object.keys(errors).length > 0;
+
 
     function validate(formData) {
         const newErrors = {};
@@ -44,15 +47,17 @@ export default function Checkout (){
     const handleSubmit = (e) => {
         e.preventDefault();
         const validationErrors = validate(formData);
+        setLoading(true);
         if (Object.keys(validationErrors).length > 0) {
             setErrors(validationErrors);
+            setLoading(false);
             return;
         }
         // simulate errors
         setErrors({});
         // simulate a successful form submission
         setSuccess('Form submitted successfully!');
-        
+        setLoading(true);
 
         console.log('Form submitted:', formData);
         // Add logic to process the checkout
@@ -75,7 +80,7 @@ export default function Checkout (){
             <form onSubmit={handleSubmit}>
                 <ShippingForm formData={formData} handleChange={handleChange} errors={errors}/>
                 <PaymentForm formData={formData} handleChange={handleChange} errors={errors}/>
-                <CheckoutButton />
+                <CheckoutButton loading={loading} disabled={isFormInvalid}/>
             </form>
             
         </div>

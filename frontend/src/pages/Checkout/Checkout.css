@@ -46,3 +46,32 @@ input {
     border-radius: 4px;
     margin-bottom: 16px;
 }
+
+.checkout-button {
+    width: 100%;
+    padding: 14px 0;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 1.1em;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    margin-top: 20px;
+    cursor: pointer;
+    transition: background 0.2s, box-shadow 0.2s;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+.checkout-button:hover,
+.checkout-button:focus {
+    background-color: #0056b3;
+    outline: none;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+}
+
+.checkout-button:disabled {
+    background-color: #b0b8c1;
+    color: #f4f4f4;
+    cursor: not-allowed;
+    box-shadow: none;
+}
