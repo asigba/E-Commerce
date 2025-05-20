@@ -1,6 +1,10 @@
-import React, {createContext, useState} from 'react';
+import React, {createContext, useContext, useState} from 'react';
 
-export const AuthContext = createContext();
+const AuthContext = createContext();
+
+export function useAuth() {
+        return useContext(AuthContext);
+}
 
 export default function AuthProvider({children}) {
     const [isSignedIn, setIsSignedIn] = useState(() => {
@@ -9,6 +13,7 @@ export default function AuthProvider({children}) {
     const [user, setUser] = useState(() => {
         return JSON.parse(localStorage.getItem('user')) || null;
     });
+
 
     function login(userData) {
         setIsSignedIn(true);
@@ -28,8 +33,14 @@ export default function AuthProvider({children}) {
         localStorage.removeItem('user');
     }
 
+    const value = {
+        isSignedIn,
+        user,
+        login,
+        logout
+    };
     return (
-        <AuthContext.Provider value={{isSignedIn, user, login, logout}}>
+        <AuthContext.Provider value={value}>
             {children}
         </AuthContext.Provider>
     );

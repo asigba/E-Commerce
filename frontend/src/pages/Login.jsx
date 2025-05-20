@@ -1,12 +1,12 @@
-import React, { useContext, useState } from 'react';
-import {AuthContext} from '../context/AuthContext';
+import { useState } from 'react';
+import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import './Login.css';
 
 export default function Login() {
     const [formData, setFormData] = useState({ email: '', password: '' });
     const [loading, setLoading] = useState(false);
-    const {login} = useContext(AuthContext);
+    const {login} = useAuth();
     const navigate = useNavigate();
 
     const handleChange = (e) => {

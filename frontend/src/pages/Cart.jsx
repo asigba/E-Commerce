@@ -2,12 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { useCart } from '../context/CartContext';
 import './Cart.css';
 import { Link } from 'react-router-dom';
-import {isSignedIn} from '../context/AuthContext';
+import { useAuth } from '../context/AuthContext';
 
 
 export default function Cart(){
     const {cartItems, removeItem} = useCart();
     const [total, setTotal] = useState(0);
+    const {isSignedIn} = useAuth();
 
 
     // const cartItems = [

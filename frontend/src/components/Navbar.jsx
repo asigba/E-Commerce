@@ -1,10 +1,10 @@
 import React, {useContext} from 'react';
 import {Link} from 'react-router-dom';
-import {AuthContext} from '../context/AuthContext';
+import {useAuth} from '../context/AuthContext';
 import './Navbar.css'; 
 
 export default function Navbar() {
-    const {isSignedIn,user, logout} = useContext(AuthContext);
+    const {isSignedIn,user, logout} = useAuth();
     const userId = user ? user.id : null;
     const userName = user ? user.name : 'Guest'
     const link = userId ? `/users/${userId}` : '/login';
