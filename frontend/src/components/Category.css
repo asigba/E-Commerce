@@ -30,3 +30,8 @@
     font-size: 1.2rem;
     margin-bottom: 10px;
 }
+
+.category-title {
+    padding: 50px 20px;
+    text-align: center;
+}
