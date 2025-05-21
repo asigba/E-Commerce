@@ -31,7 +31,6 @@ export default function Category({ category }) {
                 </div>
             ))}
             </div>
-
         </div>
     );
 }

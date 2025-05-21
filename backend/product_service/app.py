@@ -38,6 +38,8 @@ with app.app_context():
             Product(name='Vintage Phone', price=59.99, image='/static/images/vintage-phone.jpg', category='electronics'),
             Product(name='Vintage Bike', price=26.94, image='/static/images/vintage-bike.jpg', category='vehicles'),
             Product(name='Vintage Car', price=161.94, image='/static/images/vintage-car.jpg',category='vehicles'),
+            Product(name='Barefoot Shoe', price=49.99, image='/static/images/barefoot-shoe.jpg', category='clothing'),
+            Product(name="Apple IPhone 7", price=199.99, image='/static/images/apple-iphone.jpg', category='electronics'),
         ]
         db.session.add_all(sample_products)
         db.session.commit()
