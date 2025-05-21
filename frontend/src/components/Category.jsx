@@ -1,4 +1,5 @@
 import {useEffect, useState} from "react";
+import './Category.css'; // Import your CSS file for styling
 
 export default function Category({ category }) {
     const [products, setProducts] = useState([]);
@@ -12,7 +13,7 @@ export default function Category({ category }) {
         .catch((error) => {
             console.error('Error fetching products:', error);
         });
-    }, [products]);
+    }, []);
 
     function toTitleCase(str) {
         return str.charAt(0).toUpperCase() + str.slice(1);
@@ -22,13 +23,14 @@ export default function Category({ category }) {
     return (
         <div className="category-container">
             {products.length !==0 && <h2 className="category-title">{categoryTitle}</h2>}
+            <div className="category-grid">
             {products.length !== 0 && products.map((product) => (
                 <div key={product.id} className='category-card'>
                     <img src={product.image} alt={product.name} className="category-image"/>
                     <h3 className="category-name">{product.name}</h3>
-                    <p className="category-price">${product.price}</p>
                 </div>
             ))}
+            </div>
 
         </div>
     );

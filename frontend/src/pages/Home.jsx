@@ -18,7 +18,7 @@ export default function Home() {
             console.error('Error fetching products:', error);
             setLoading(false);
         });
-    },[products]);
+    },[]);
 
     return (
         <div className="home-container">
