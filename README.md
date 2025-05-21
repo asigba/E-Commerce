@@ -5,9 +5,9 @@ A full-stack e-commerce web application built with React, Flask, and PostgreSQL.
 ## Features
 
 - User authentication (sign up, login, logout)
-- Product listing and categories
-- Product details page
-- Add to cart and checkout
+- Product listing and categories(done)
+- Product details page(done)
+- Add to cart and checkout(done)
 - Admin product management (not sure yet)
 - Image upload and display(still working on this!!!)
 
@@ -27,7 +27,7 @@ A full-stack e-commerce web application built with React, Flask, and PostgreSQL.
 - PostgreSQL
 - (Required) Docker
 
-### Installation
+### Installation 
 
 1. **Clone the repository:**
 
@@ -131,5 +131,6 @@ rmAll.sh
 
 - `GET /api/products` — List all products
 - `GET /api/products/<id>` — Get product details
-- `POST /api/products` — Add a new product (with image upload)
+- `GET /api/products/<category>` - Get all products under category
 - `POST /api/login` — User login
+- `GET /api/users/<id>` - Get user profile
