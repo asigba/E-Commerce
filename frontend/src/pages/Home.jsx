@@ -1,6 +1,7 @@
 import React, { use, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './Home.css'; 
+import Category from '../components/Category';
 
 export default function Home() {
     const [products, setProducts] = React.useState([]); 
@@ -17,8 +18,7 @@ export default function Home() {
             console.error('Error fetching products:', error);
             setLoading(false);
         });
-    },[]);
-
+    },[products]);
 
     return (
         <div className="home-container">
@@ -46,7 +46,11 @@ export default function Home() {
                     </div>
                     )}
             </section>
-            {}
+            <Category category="electronics" />
+            <Category category="vehicles" />
+            <Category category="clothing" />
+            <Category category="home" />
+
         </div>
     );
 }
