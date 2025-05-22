@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import './UserProfile.css';
+import ListProduct from './Products/ListProduct';
 
 export default function UserProfile() {
     const API_URL = process.env.REACT_APP_USER_URL || "http://localhost:5002";
@@ -50,6 +51,8 @@ export default function UserProfile() {
                     </div>
                 </div>
             </div>
+            <h2>List Items</h2>
+            <ListProduct />
         </div>
     );
 };

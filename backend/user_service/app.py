@@ -82,5 +82,11 @@ def register():
 
     return jsonify({"message": "User registered successfully"}), 201
 
+@app.route('/api/users/itemsListed', methods=['GET'])
+def get_items_listed():
+    # This is a placeholder. In a real application, you would fetch the items listed by the user.
+    # For now, we'll just return an empty list.
+    return jsonify([])
+
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0',port=5002)

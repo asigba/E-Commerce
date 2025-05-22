@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 
@@ -85,11 +85,25 @@ def get_product(productId):
         return jsonify(product.to_dict())
     else:
         return jsonify({'error': 'Product not found'}), 404
+    
+@app.route('/api/products', methods=['POST'])
+def create_product():
+    data = request.json
+    new_product = Product(
+        name=data['name'],
+        price=data['price'],
+        image=data['image'],
+        category=data['category']
+    )
+    db.session.add(new_product)
+    db.session.commit()
+    return jsonify(new_product.to_dict()), 201
 
 @app.route('/api/products/<string:category>', methods=['GET'])
 def get_products_by_category(category):
     products = Product.query.filter_by(category=category).all()
     return jsonify([product.to_dict() for product in products])
+
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0',port=5001) 
