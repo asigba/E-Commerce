@@ -49,8 +49,6 @@ export default function Home() {
             <Category category="electronics" />
             <Category category="vehicles" />
             <Category category="clothing" />
-            <Category category="home" />
-
         </div>
     );
 }
