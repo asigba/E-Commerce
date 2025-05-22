@@ -9,7 +9,7 @@ A full-stack e-commerce web application built with React, Flask, and PostgreSQL.
 - Product details page(done)
 - Add to cart and checkout(done)
 - Admin product management (not sure yet)
-- Image upload and display(still working on this!!!)
+- Image upload and display(got product upload, but not image)
 
 ## Tech Stack
 
