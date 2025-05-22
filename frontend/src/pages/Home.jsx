@@ -34,7 +34,7 @@ export default function Home() {
                 <h2>Featured Products</h2>
                 {loading ? (
                     <p>Loading products...</p>
-                ): (<div className="product-grid">
+                ): (<div className="product-flex">
                         {products.map((product) => (
                             <div key={product.id} className='product-card'>
                                 <img src={product.image} alt={product.name} className="product-image"/>

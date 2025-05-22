@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react";
 import './Category.css'; // Import your CSS file for styling
+import { Link } from "react-router-dom"; // Import Link for navigation
 
 export default function Category({ category }) {
     const [products, setProducts] = useState([]);
@@ -20,17 +21,19 @@ export default function Category({ category }) {
     }
     const categoryTitle = toTitleCase(category);
 
-    return (
-        <div className="category-container">
-            {products.length !==0 && <h2 className="category-title">{categoryTitle}</h2>}
-            <div className="category-grid">
+    return (           
+        <section className="category-section">
+            {products.length !==0 && <h2>{categoryTitle}</h2>}
+            <div className="product-flex">
             {products.length !== 0 && products.map((product) => (
-                <div key={product.id} className='category-card'>
-                    <img src={product.image} alt={product.name} className="category-image"/>
-                    <h3 className="category-name">{product.name}</h3>
+                <div key={product.id} className='product-card'>
+                    <img src={product.image} alt={product.name} className="product-image"/>
+                    <h3 className="product-name">{product.name}</h3>
+                    <p className="product-price">${product.price}</p>
+                    <Link to={`/products/${product.id}`} className="view-details-button">View Details</Link>
                 </div>
             ))}
             </div>
-        </div>
+        </section>
     );
 }
